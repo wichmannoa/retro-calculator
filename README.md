@@ -1,1 +1,1 @@
-# retro-caluclator
+# retro-calculator
