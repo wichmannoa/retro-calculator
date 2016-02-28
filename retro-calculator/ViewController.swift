@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         case Multiply = "*"
         case Subtract = "-"
         case Add = "+"
-      
+        case Clear = "Clear"
         case Empty = "Empty"
         
     }
@@ -43,7 +43,10 @@ class ViewController: UIViewController {
             print(err.debugDescription)
         }
     }
-
+    
+    @IBAction func onClearPressed1(sender: AnyObject) {
+       clearCalc()
+    }
     @IBAction func onDividePressed(sender: AnyObject) {
         processOperation(Operation.Divide)
     }
@@ -60,13 +63,27 @@ class ViewController: UIViewController {
         processOperation(Operation.Multiply)
     }
     @IBAction func numberPressed(btn: UIButton!){
-        playSound()
-        runningNumber += "\(btn.tag)"
-        outputLbl.text = runningNumber;
+        //playSound()
+        if runningNumber == "0"{
+            runningNumber = "\(btn.tag)"
+            outputLbl.text = runningNumber;
+        }else{
+            runningNumber += "\(btn.tag)"
+            outputLbl.text = runningNumber;
+        }
     }
     
+    func clearCalc(){
+        runningNumber = ""
+        rightValString = ""
+        leftValString = ""
+        processOperation(Operation.Empty)
+        outputLbl.text = "0"
+    }
     func processOperation(op: Operation){
-        playSound()
+        //playSound()
+        
+  
         
         if currentOperation != Operation.Empty{
             
